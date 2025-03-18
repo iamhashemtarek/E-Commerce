@@ -1,112 +1,141 @@
-# ECommerce.ITI
+# ECommerce Solution
 
-ECommerce.ITI is an e-commerce application built using ASP.NET Core and Entity Framework Core. The project demonstrates a clean architecture with a repository pattern, unit of work, and specification pattern for querying data.
+This solution is an e-commerce application built using .NET 9.0. It consists of multiple projects, each serving a specific purpose within the application. The main projects included in this solution are:
+
+- `ECommerce.APIs`: The API layer of the application.
+- `ECommerce.Repository`: The data access layer.
+- `ECommerce.Service`: The business logic layer.
+- `ECommerce.Core`: The core entities and contracts.
 
 ## Table of Contents
 
+- [Projects](#projects)
+  - [ECommerce.APIs](#ecommerceapis)
+  - [ECommerce.Repository](#ecommercerepository)
+  - [ECommerce.Service](#ecommerceservice)
+  - [ECommerce.Core](#ecommercecore)
 - [Features](#features)
-- [Technologies](#technologies)
 - [Getting Started](#getting-started)
-- [Project Structure](#project-structure)
-- [Usage](#usage)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Setting Up the Database](#setting-up-the-database)
+  - [Building the Solution](#building-the-solution)
+  - [Running the Application](#running-the-application)
+- [API Endpoints](#api-endpoints)
 - [Contributing](#contributing)
 - [License](#license)
 
+## Projects
+
+### ECommerce.APIs
+
+This project is the API layer of the application. It is built using ASP.NET Core and targets .NET 9.0. The project includes the following packages:
+
+- `AutoMapper`: For object-object mapping.
+- `Microsoft.AspNetCore.OpenApi`: For OpenAPI/Swagger support.
+- `Microsoft.EntityFrameworkCore.Tools`: For Entity Framework Core tools.
+- `Swashbuckle.AspNetCore`: For Swagger generation.
+
+#### Project References
+
+- `ECommerce.Repository`: References the data access layer.
+- `ECommerce.Service`: References the business logic layer.
+
+### ECommerce.Repository
+
+This project is the data access layer of the application. It is responsible for interacting with the database using Entity Framework Core.
+
+### ECommerce.Service
+
+This project is the business logic layer of the application. It contains the core business logic and interacts with the repository layer to perform data operations.
+
+### ECommerce.Core
+
+This project contains the core entities and contracts used across the application.
+
 ## Features
 
-- User authentication and authorization using ASP.NET Identity
-- Product management with categories and brands
-- Order processing with delivery methods
-- Secure payment processing using Stripe
-- Specification pattern for flexible querying
-- Unit of work pattern for managing transactions
+- RESTful API built with ASP.NET Core
+- Entity Framework Core for data access
 - AutoMapper for object-object mapping
-
-## Technologies
-
-- ASP.NET Core 9.0
-- Entity Framework Core 9.0
-- SQL Server
-- AutoMapper
-- ASP.NET Identity
-- FluentValidation
+- Swagger for API documentation
+- Modular architecture with separate projects for API, service, repository, and core layers
+- JWT Authentication
+- Redis for caching
+- Stripe integration for payments
 
 ## Getting Started
 
 ### Prerequisites
 
 - .NET 9.0 SDK
-- SQL Server
+- Visual Studio 2022
+- SQL Server or any other supported database
 
 ### Installation
 
-1. Clone the repository:
+1. Clone the repository.
+   
    
 ```
-   git clone https://github.com/yourusername/ECommerce.ITI.git
-   cd ECommerce.ITI
+   git clone https://github.com/your-repo/ecommerce-solution.git
    
 ```
+2. Open the solution in Visual Studio 2022.
 
-2. Set up the database:
-   - Update the connection string in `appsettings.json`:
-     
+### Setting Up the Database
+
+1. Update the connection strings in `appsettings.json` in the `ECommerce.APIs` project.
+   
+   
 ```json
-     {
-       "ConnectionStrings": {
-         "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=ECommerceDb;Trusted_Connection=True;MultipleActiveResultSets=true",
-         "IdentityConnection": "Server=(localdb)\\mssqllocaldb;Database=IdentityDb;Trusted_Connection=True;MultipleActiveResultSets=true"
-       }
-     }
-     
+   "ConnectionStrings": {
+     "DefaultConnection": "Server=your_server;Database=your_database;User Id=your_user;Password=your_password;",
+     "IdentityConnection": "Server=your_server;Database=your_identity_database;User Id=your_user;Password=your_password;",
+     "Redis": "localhost"
+   }
+   
+```
+2. Apply migrations to set up the database schema.
+   
+   
+```
+   dotnet ef database update --project ECommerce.Repository
+   
 ```
 
-   - Apply migrations:
-     
-```
-     dotnet ef database update --project ECommerce.Repository --context StoreContext
-     dotnet ef database update --project ECommerce.Repository --context AppIdentityDbContext
-     
-```
+### Building the Solution
 
-3. Run the application:
+1. Restore the NuGet packages.
+2. Build the solution.
+
+### Running the Application
+
+1. Set `ECommerce.APIs` as the startup project.
+2. Run the application using Visual Studio or the .NET CLI.
+   
    
 ```
    dotnet run --project ECommerce.APIs
    
 ```
 
-## Project Structure
+## API Endpoints
 
-- **ECommerce.Core**: Contains the core entities, interfaces, and specifications.
-- **ECommerce.Repository**: Implements the repository pattern, unit of work, and database context.
-- **ECommerce.APIs**: Contains the API controllers and configuration.
+The API documentation is generated using Swagger. Once the application is running, you can access the Swagger UI at `http://localhost:<port>/swagger`.
 
-## Usage
+### Example Endpoints
 
-### API Endpoints
-
-- **Products**
-  - `GET /api/products`: Get all products
-  - `GET /api/products/{id}`: Get a product by ID
-  - `POST /api/products`: Create a new product
-  - `PUT /api/products/{id}`: Update a product
-  - `DELETE /api/products/{id}`: Delete a product
-
-- **Orders**
-  - `GET /api/orders`: Get all orders
-  - `GET /api/orders/{id}`: Get an order by ID
-  - `POST /api/orders`: Create a new order
-
-- **Authentication**
-  - `POST /api/account/register`: Register a new user
-  - `POST /api/account/login`: Login a user
+- `GET /api/products`: Retrieve a list of products.
+- `GET /api/products/{id}`: Retrieve a specific product by ID.
+- `POST /api/products`: Create a new product.
+- `PUT /api/products/{id}`: Update an existing product.
+- `DELETE /api/products/{id}`: Delete a product.
 
 ## Contributing
 
-Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
+Contributions are welcome! Please fork the repository and submit pull requests.
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
+This project is licensed under the MIT License.
