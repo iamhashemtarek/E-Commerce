@@ -17,6 +17,7 @@ ECommerce.ITI is an e-commerce application built using ASP.NET Core and Entity F
 - User authentication and authorization using ASP.NET Identity
 - Product management with categories and brands
 - Order processing with delivery methods
+- Secure payment processing using Stripe
 - Specification pattern for flexible querying
 - Unit of work pattern for managing transactions
 - AutoMapper for object-object mapping
