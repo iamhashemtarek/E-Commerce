@@ -29,7 +29,6 @@ ECommerce.ITI is an e-commerce application built using ASP.NET Core and Entity F
 - SQL Server
 - AutoMapper
 - ASP.NET Identity
-- MediatR
 - FluentValidation
 
 ## Getting Started
