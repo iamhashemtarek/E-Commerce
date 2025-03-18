@@ -23,8 +23,8 @@ ECommerce.ITI is an e-commerce application built using ASP.NET Core and Entity F
 
 ## Technologies
 
-- ASP.NET Core 7.0
-- Entity Framework Core 7.0
+- ASP.NET Core 9.0
+- Entity Framework Core 9.0
 - SQL Server
 - AutoMapper
 - ASP.NET Identity
@@ -35,7 +35,7 @@ ECommerce.ITI is an e-commerce application built using ASP.NET Core and Entity F
 
 ### Prerequisites
 
-- .NET 7.0 SDK
+- .NET 9.0 SDK
 - SQL Server
 
 ### Installation
@@ -110,6 +110,3 @@ Contributions are welcome! Please open an issue or submit a pull request for any
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
----
-
-Feel free to customize this README file according to your project's specific details and requirements.
